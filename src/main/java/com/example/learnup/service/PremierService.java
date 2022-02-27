@@ -37,7 +37,7 @@ public class PremierService {
         premierMap.get(name).setDescription(description).setAgeGroup(ageGroup);
     }
 
-    public void buyTickets(String name, Integer numberTickets) throws Exception {
+    public void buyTickets(String email, String name, Integer numberTickets) throws Exception {
         Premier premier = getPremier(name);
         if ((premier.getAvailableSeats() - numberTickets) <= 0) {
             throw new RuntimeException("Невозможно купить билет, мест больше нет");
