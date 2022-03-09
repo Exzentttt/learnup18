@@ -24,6 +24,8 @@ public class LearnupApplication {
         premierService.getAllPremiers(null);
         System.out.println("------------------------------------------------");
         premierService.buyTickets("test@example.com", "2", 4);
+        premierService.getAllPremiers(null);
+        System.out.println("------------------------------------------------");
         premierService.returnTickets("2", 2);
         premierService.getAllPremiers(null);
         System.out.println("------------------------------------------------");

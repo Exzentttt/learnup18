@@ -1,14 +1,27 @@
 package com.example.learnup.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
-import java.util.UUID;
+import javax.persistence.*;
 
 
-@Data
+@Entity
 @AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Ticket {
-    private UUID name;
-    private String premierName;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Premier premier;
+
+    public Ticket(Premier premier) {
+        this.premier = premier;
+    }
+
 }

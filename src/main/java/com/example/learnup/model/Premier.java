@@ -1,30 +1,37 @@
 package com.example.learnup.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.experimental.Accessors;
+import lombok.*;
 
-import java.util.ArrayList;
+import javax.persistence.*;
 import java.util.List;
 
-@Data
+
+@Entity
+@Table(name = "premier")
 @AllArgsConstructor
-@Accessors(chain = true)
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Premier {
 
+    @Id
+    @Column(name = "id")
     private String name;
-    private String description;
-    private String ageGroup;
-    private Integer allSeats;
-    private Integer availableSeats;
-    private List<Ticket> tickets = new ArrayList<>();
 
-    public Premier(String name, String description, String ageGroup, Integer allSeats) {
-        this.name = name;
-        this.description = description;
-        this.ageGroup = ageGroup;
-        this.allSeats = allSeats;
-        this.availableSeats = allSeats;
-    }
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "age_group")
+    private String ageGroup;
+
+    @Column(name = "all_seats")
+    private Integer allSeats;
+
+    @Column(name = "available_seats")
+    private Integer availableSeats;
+
+    @OneToMany(mappedBy = "premier", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Ticket> tickets;
 
 }
