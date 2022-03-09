@@ -37,6 +37,7 @@ public class PremierService {
         premierRepository.updatePremier(name, description, ageGroup);
     }
 
+    @Transactional
     public void buyTickets(String email, String name, Integer numberTickets) {
         premierRepository.findById(name).map(premier -> {
             if ((premier.getAvailableSeats() - numberTickets) <= 0) {
@@ -48,6 +49,7 @@ public class PremierService {
         });
     }
 
+    @Transactional
     public void returnTickets(String name, Integer numberTickets) {
         premierRepository.findById(name)
                 .map(premier -> {
