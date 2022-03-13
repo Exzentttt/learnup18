@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "premier", produces = "application/json")
+@RequestMapping(value = "api", produces = "application/json")
 public class PremiersController {
 
     private final PremierService premierService;
