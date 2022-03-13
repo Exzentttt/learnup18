@@ -62,19 +62,23 @@ public class PremierService {
                 });
     }
 
-    public void getAllPremiers(String name) {
+    public String getAllPremiers(String name) {
+        StringBuilder result = new StringBuilder();
         for (Premier premier: premierRepository.findAll()) {
             if (name != null) {
                 if (Objects.equals(premier.getName(), name)) {
-                    allInfoPrintPremier(premier);
+                    String infoPremier = allInfoPrintPremier(premier);
+                    result.append(infoPremier);
                 }
             } else {
-                allInfoPrintPremier(premier);
+                String infoPremier = allInfoPrintPremier(premier);
+                result.append(infoPremier);
             }
         }
+        return result.toString();
     }
 
-    public void allInfoPrintPremier(Premier premier) {
+    public String allInfoPrintPremier(Premier premier) {
         log.info(
                 "Премьера: {}, Описание: {}, Возрастная категория: {}, Количество мест: {}, Количество доступных мест: {}, Билеты: {}",
                 premier.getName(),
@@ -84,6 +88,12 @@ public class PremierService {
                 premier.getAvailableSeats(),
                 premier.getTickets()
         );
+        return "Премьера: " + premier.getName()  +
+               " Описание: " + premier.getDescription() +
+               " Возрастная категория: " + premier.getAgeGroup() +
+               " Количество мест: " + premier.getAllSeats() +
+               " Количество доступных мест: " + premier.getAvailableSeats() +
+               " Билеты:  " + premier.getTickets() + "\n";
     }
 
 }
